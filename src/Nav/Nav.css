@@ -1,0 +1,19 @@
+nav {
+    min-height: 50px;
+    background: lightgrey;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    justify-content: center;
+  
+  }
+  nav li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  nav a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+  }
