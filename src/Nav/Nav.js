@@ -10,6 +10,7 @@ class Nav extends Component {
                     <li><Link to='/signup'>Sign Up</Link></li>
                     <li><Link to='/login'>Log In</Link></li>
                     <li><Link to='/about'>About</Link></li>
+                    <li><Link to='/meal-planner'>Meal Planner</Link></li>
                     <li><Link to='/saved'>Saved Recipes</Link></li>
                 </ul>
             </nav>

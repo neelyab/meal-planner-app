@@ -1,0 +1,20 @@
+.meal-search {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+  }
+  .search {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background: lightgrey;
+    min-height: 200px;
+    text-align: center;
+    padding: 30px 30px;
+  }
+  .search input {
+    max-width: 500px;
+  }
