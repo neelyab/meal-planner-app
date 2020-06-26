@@ -26,7 +26,7 @@ class Search extends Component {
                     <option>Vegan</option>
                     <option>Vegetarian</option>
                 </select>
-                <button type="submit" class="submit" >Submit</button>
+                <button type="submit" className="submit" >Submit</button>
                 </section>
               </form>
         )

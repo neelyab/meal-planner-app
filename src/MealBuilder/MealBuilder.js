@@ -6,7 +6,7 @@ class MealBuilder extends Component {
         return(
         <section className="meal-builder">
             <p>Meal Builder</p>
-            <div class="saved-meals">
+            <div className="saved-meals">
             </div>
         </section>
         )
