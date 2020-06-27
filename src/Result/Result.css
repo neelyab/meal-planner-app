@@ -1,0 +1,13 @@
+.image-result{
+    display: flex;
+    width: 50%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+.result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+}

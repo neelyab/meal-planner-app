@@ -69,6 +69,26 @@ const Store = [
                 "Alcohol-Free"
             ],
         }   
+    },
+    {
+        recipe: {
+            
+            label: "Eggplant Caviar",
+            image: "https://www.edamam.com/web-img/8e7/8e703e36e665bc3132279f7a607fa92d.jpg",
+            url: "http://www.finecooking.com/recipes/eggplant_caviar.aspx",
+            dietLabels: [
+              "Balanced"
+            ],
+            healthLabels: [
+              "Vegan",
+              "Vegetarian",
+              "Peanut-Free",
+              "Tree-Nut-Free",
+              "Alcohol-Free",
+              "Immuno-Supportive"
+            ],
+        }
     }
 
 ]
+export default Store;

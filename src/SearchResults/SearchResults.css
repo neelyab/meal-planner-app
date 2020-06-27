@@ -24,6 +24,9 @@
     margin-bottom: 20px;
     padding: 10px 10px;
   }
+  .search-results ul {
+   margin: 0 auto;
+  }
   .search-results ul li {
     display: flex;
     justify-content: center;

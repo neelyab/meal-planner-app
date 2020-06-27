@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
+import Result from '../Result/Result'
 import './SearchResults.css';
 
 class SearchResults extends Component {
     render(){
+        let searchResults
+        if (this.props.results) {
+        searchResults = this.props.results.map((result, i) => {
+          const {label, url, image, dietLabels, healthLabels} = result.recipe
+          return  <Result key={i} label={label} url={url} image={image} dietLabels={dietLabels} healthLabels={healthLabels} />
+        })
+     }
         return(
        <div className="search-results">
             <p>Search Results</p>
                 <ul>
-                    <li>Result</li>
-                    <li>Result</li>
-                    <li>Result</li>
+                    {this.props.results && this.props.results.length === 0 ? 'No results found' : searchResults}
                 </ul>
             <div className="search-buttons">
                 <button type="button" id="search-results">back</button>
