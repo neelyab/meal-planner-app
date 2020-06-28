@@ -87,7 +87,22 @@ const Store = [
               "Alcohol-Free",
               "Immuno-Supportive"
             ],
-        }
+        },
+        recipe: {
+            label: "Eggplant Lasagna",
+            image: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F3436081.jpg&w=595&h=595&c=sc&poi=face&q=85",
+            url: "https://elanaspantry.com/",
+            dietLabels: [
+                "Low-Carb",
+                "Balanced"
+            ],
+            healthLabels: [
+                "Vegetarian",
+                "Peanut-Free",
+                "Tree-Nut-Free",
+                "Alcohol-Free"
+            ],
+        }   
     }
 
 ]

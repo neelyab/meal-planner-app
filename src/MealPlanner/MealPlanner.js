@@ -7,7 +7,8 @@ class MealPlanner extends Component {
     constructor(props){
         super(props)
         this.state = {
-            results: null
+            results: null,
+            savedMeals: []
         }
     }
     handleResults = (results) => {
@@ -16,12 +17,42 @@ class MealPlanner extends Component {
             results
         })
     }
+    saveMeal = (meal) => {
+        //save individual meal into MealBuilder component
+        // prevent duplicate recipes from being saved
+        if (this.state.savedMeals.find(saved => saved.recipe.label === meal)){
+            return;
+        } else {
+        // find full recipe in results
+        const fullRecipe = this.state.results.find(result => result.recipe.label === meal)
+        // make a copy of savedMeals array
+        const savedMeals = this.state.savedMeals
+        // save recipe to array and set state with new array
+        savedMeals.push(fullRecipe);
+        this.setState({
+            savedMeals
+        })
+        console.log(this.state.savedMeals)
+    }
+    }
+    deleteMeal = (meal) => {
+        console.log(meal)
+        const saved = this.state.savedMeals
+        const newArray = saved.filter(savedMeal => savedMeal.recipe.label !== meal.recipe.label)
+        console.log(newArray)
+        this.setState({
+            savedMeals: newArray
+        })
+    }
+    saveMealPlan = (mealPlan) => {
+
+    }
     render(){
         return(
             <div>
-                <Search handleResults={this.handleResults}/>
-                <MealBuilder/>
-                <SearchResults results={this.state.results}/>
+                <Search handleResults={this.handleResults} />
+                <MealBuilder savedMeals={this.state.savedMeals} deleteMeal={this.deleteMeal}/>
+                <SearchResults results={this.state.results} saveMeal={this.saveMeal}/>
             </div>
         )
     }

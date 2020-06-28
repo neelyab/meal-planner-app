@@ -83,7 +83,7 @@ class Search extends Component {
             <form className="meal-search" onSubmit={(e)=>this.handleSubmit(e)}>
                 <section className="search">
                 <p>Search Recipes</p>
-                <input placeholder="brocolli soup" type="text" onChange={(e)=>this.handleSearch(e.target.value)} required></input>
+                <input placeholder="green beans" type="text" onChange={(e)=>this.handleSearch(e.target.value)} required></input>
                 <label htmlFor="diet">
                     Select 2 diets:
                 </label>

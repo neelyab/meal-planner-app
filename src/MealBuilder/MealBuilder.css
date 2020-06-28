@@ -1,0 +1,14 @@
+.meal-builder {
+    border: 1px solid black;
+    padding: 30px 30px;
+}
+.meal-builder-recipe {
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.saved-meals {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
