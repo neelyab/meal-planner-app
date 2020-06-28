@@ -61,7 +61,6 @@ class Search extends Component {
             let finalResult;
             // initially filter out results for the search term
             const searchQueryMatch = Store.filter(result => {
-                console.log(result)
              return result.recipe.label.toLowerCase().includes(search.toLowerCase())
             }) 
             // then filter results by diet
@@ -73,7 +72,6 @@ class Search extends Component {
                     }
                 })
             }
-            console.log(finalResult)
             // set the state of results on the meal planner component
             this.props.handleResults(finalResult)
         }
@@ -81,8 +79,8 @@ class Search extends Component {
     render(){
         return(
             <form className="meal-search" onSubmit={(e)=>this.handleSubmit(e)}>
-                <section className="search">
-                <p>Search Recipes</p>
+            <section className="search">
+                <h2>Recipe Search</h2>
                 <input placeholder="green beans" type="text" onChange={(e)=>this.handleSearch(e.target.value)} required></input>
                 <label htmlFor="diet">
                     Select 2 diets:

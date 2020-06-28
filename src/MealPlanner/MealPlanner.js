@@ -23,23 +23,20 @@ class MealPlanner extends Component {
         if (this.state.savedMeals.find(saved => saved.recipe.label === meal)){
             return;
         } else {
-        // find full recipe in results
-        const fullRecipe = this.state.results.find(result => result.recipe.label === meal)
-        // make a copy of savedMeals array
-        const savedMeals = this.state.savedMeals
-        // save recipe to array and set state with new array
-        savedMeals.push(fullRecipe);
-        this.setState({
-            savedMeals
-        })
-        console.log(this.state.savedMeals)
-    }
+            // find full recipe in results
+            const fullRecipe = this.state.results.find(result => result.recipe.label === meal)
+            // make a copy of savedMeals array
+            const savedMeals = this.state.savedMeals
+            // save recipe to array and set state with new array
+            savedMeals.push(fullRecipe);
+            this.setState({
+                savedMeals
+            })
+        }
     }
     deleteMeal = (meal) => {
-        console.log(meal)
         const saved = this.state.savedMeals
         const newArray = saved.filter(savedMeal => savedMeal.recipe.label !== meal.recipe.label)
-        console.log(newArray)
         this.setState({
             savedMeals: newArray
         })

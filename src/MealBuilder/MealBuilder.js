@@ -4,6 +4,7 @@ import './MealBuilder.css'
 class MealBuilder extends Component {
     constructor(props){
         super(props)
+        // create ref for input field
         this.input = React.createRef();
         this.state={
             error: null,
@@ -12,6 +13,7 @@ class MealBuilder extends Component {
     }
     timeoutFunction(){
         this.setState({
+            // call this function after saved message has been shown
             savedStatus: false
         })
     }
@@ -26,35 +28,43 @@ class MealBuilder extends Component {
         }) : {}
         return(
         <form className="meal-builder">
-            <p>Meal Plan Builder</p>
-            <label htmlFor="meal-name">Name your meal or meal plan:</label>
+            <h2>Meal Plan Builder</h2>
+            <label htmlFor="meal-name">Name your meal plan:</label>
             <input type="text" name="meal-name" ref={this.input} required></input>
-             {this.state.error ? <p>{this.state.error}</p>: ''}
-             {this.state.savedStatus ? <p>Meal plan saved!</p> : ''}
+                    {this.state.error ? <p className="error-message">{this.state.error}</p> : ''}
+                    {this.state.savedStatus ? <p className="success-message">Meal plan saved!</p> : ''}
             <div className="saved-meals">
                 {saved.length > 0 ? saved : ''}
             </div>
-            <button type="button" onClick={() => 
-            {   if(this.input.current.value === ''){
-                this.setState({
-                    error: 'please enter a name'
-                })
-            } else if(this.props.savedMeals.length === 0){
-                this.setState({
-                    error: 'please save at least one meal to the meal plan'
-                })
-            }
-            else {
-                this.props.submitMealPlan(this.input.current.value, this.props.savedMeals)
-                this.input.current.value = null;
-                this.setState({
-                    savedStatus: true,
-                    error: null
-                })
-                setTimeout(() => this.timeoutFunction(), 3000)
-            }
-            }
-            }>Save Mealplan</button>
+            <button 
+            type="button" 
+            onClick={() => 
+                {   if(this.input.current.value === ''){
+                    // check to make sure input field is filled out
+                    this.setState({
+                        error: 'Please enter a name'
+                    })
+                } else if(this.props.savedMeals.length === 0){
+                    //check to see if there is at least one saved meal
+                    this.setState({
+                        error: 'Please save at least one meal to the meal plan'
+                    })
+                }
+                    else {
+                        this.props.submitMealPlan(this.input.current.value, this.props.savedMeals)
+                        // clear input value
+                        this.input.current.value = null;
+                        this.setState({
+                            //show meal saved message
+                            savedStatus: true,
+                            error: null
+                        })
+                        // set timeout for 2 seconds so that message will disappear
+                        setTimeout(() => this.timeoutFunction(), 2000)
+                    }
+                }
+                }
+            >Save Mealplan</button>
         </form>
         )
     }

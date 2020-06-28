@@ -15,17 +15,14 @@ class App extends Component {
     }
   }
   saveMealPlan = (name, savedMeals) => {
-    console.log(savedMeals)
     const mealPlan = {
       name,
       savedMeals
     }
-    console.log(mealPlan)
     const {savedMealPlans} = this.state;
     this.setState({
       savedMealPlans: [...savedMealPlans, mealPlan]
     })
-    console.log(this.state.savedMealPlans)
   }
   render() {
   return (

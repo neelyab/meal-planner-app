@@ -5,6 +5,7 @@ import './SearchResults.css';
 class SearchResults extends Component {
     render(){
         let searchResults
+        // if there are results to display, render Result component
         if (this.props.results) {
         searchResults = this.props.results.map((result, i) => {
           const {label, url, image, dietLabels, healthLabels} = result.recipe
