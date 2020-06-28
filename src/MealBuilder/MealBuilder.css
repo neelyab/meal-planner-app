@@ -1,9 +1,15 @@
 .meal-builder {
     border: 1px solid black;
     padding: 30px 30px;
+    min-width: 200px;
+    width: 80%;
+    text-align: center;
+}
+.meal-builder input, label {
+    margin-bottom: 10px;
 }
 .meal-builder-recipe {
-    max-width: 200px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
 }

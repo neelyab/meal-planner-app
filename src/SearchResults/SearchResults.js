@@ -10,6 +10,7 @@ class SearchResults extends Component {
           const {label, url, image, dietLabels, healthLabels} = result.recipe
           return  <Result 
                     key={i} 
+                    id={i}
                     label={label} 
                     url={url} 
                     image={image} 

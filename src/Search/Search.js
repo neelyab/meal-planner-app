@@ -66,7 +66,7 @@ class Search extends Component {
             }) 
             // then filter results by diet
             if(searchQueryMatch) {
-              finalResult = searchQueryMatch.filter(result=> {
+              finalResult = searchQueryMatch.filter(result => {
                     if (result.recipe.healthLabels.includes(dietOne) || result.recipe.healthLabels.includes(dietTwo) || result.recipe.dietLabels.includes(dietOne) || result.recipe.dietLabels.includes(dietTwo))
                     {
                         return result;

@@ -44,14 +44,17 @@ class MealPlanner extends Component {
             savedMeals: newArray
         })
     }
-    saveMealPlan = (mealPlan) => {
-
+    submitMealPlan = (name, mealPlan) => {
+        this.props.saveMealPlan(name, mealPlan)
+        this.setState({
+            savedMeals: []
+        })
     }
     render(){
         return(
             <div>
                 <Search handleResults={this.handleResults} />
-                <MealBuilder savedMeals={this.state.savedMeals} deleteMeal={this.deleteMeal}/>
+                <MealBuilder savedMeals={this.state.savedMeals} deleteMeal={this.deleteMeal} submitMealPlan={this.submitMealPlan}/>
                 <SearchResults results={this.state.results} saveMeal={this.saveMeal}/>
             </div>
         )
