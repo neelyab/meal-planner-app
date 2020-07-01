@@ -3,3 +3,10 @@
     flex-flow: row wrap;
     justify-content: center;
 }
+.your-meal-plans {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+}

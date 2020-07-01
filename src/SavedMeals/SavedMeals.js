@@ -16,7 +16,10 @@ class SavedMeals extends Component {
            savedMeals = ''
         }
         return(
-        <div className="saved-meal-page">{savedMeals}</div>
+        <div className="your-meal-plans">
+            <h2>Your Meal Plans</h2>
+            <div className="saved-meal-page">{savedMeals}</div>
+            </div>
         )
     }
 }
