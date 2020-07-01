@@ -1,11 +1,12 @@
 .meal-builder {
+    margin: 15% auto;
     border: 1px solid black;
-    padding: 30px 30px;
+    padding: 20px 30px;
     min-width: 200px;
     width: 80%;
     max-width: 700px;
     text-align: center;
-    margin-top: 10px;
+    background: white;
 }
 .meal-builder input, label, button {
     margin-bottom: 10px;
@@ -25,4 +26,10 @@
 }
 .success-message {
     color: green;
+}
+.toggle-modal {
+    text-align: right;
+}
+.toggle-modal:hover {
+    cursor: pointer;
 }

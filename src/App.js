@@ -4,14 +4,16 @@ import Nav from './Nav/Nav';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import MealPlanner from './MealPlanner/MealPlanner';
+import SavedMeals from './SavedMeals/SavedMeals';
 import {Route} from 'react-router-dom';
 import Home from './Home/Home.js'
+import MealPlanContext from './mealPlanContext'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state= {
-      savedMealPlans: []
+      savedMealPlans: [],
     }
   }
   saveMealPlan = (name, savedMeals) => {
@@ -19,21 +21,32 @@ class App extends Component {
       name,
       savedMeals
     }
-    const {savedMealPlans} = this.state;
+    const { savedMealPlans } = this.state;
     this.setState({
       savedMealPlans: [...savedMealPlans, mealPlan]
     })
   }
+  deleteMeal = (meal) => {
+    console.log('deleting meal')
+  }
   render() {
+    const contextValue = {
+            savedMealPlans: this.state.savedMealPlans,
+            deleteMeal: this.deleteMeal
+         }
   return (
     <main className='App'>
+      <MealPlanContext.Provider value={contextValue}>
       <Route path='/' component={Nav}/>
-      <Route exact path='/' component={Home}/>
+      <Route exact path='/' render= {
+        (props) => <SavedMeals {...props}/>}></Route>
       <Route path='/about' component={About}/>
       <Route path='/login' component={Login}/>
       <Route path='/signup' component={Signup}/>
-      <Route path='/meal-planner' render = {
+      <Route path='/saved-meals' component={SavedMeals}/>
+      <Route path='/meal-planner' render= {
         (props) => <MealPlanner saveMealPlan={this.saveMealPlan} {...props}/> }></Route>
+        </MealPlanContext.Provider>
     </main>
   )
     }

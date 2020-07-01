@@ -8,7 +8,7 @@ class MealBuilder extends Component {
         this.input = React.createRef();
         this.state={
             error: null,
-            savedStatus: false
+            savedStatus: false,
         }
     }
     timeoutFunction(){
@@ -22,12 +22,12 @@ class MealBuilder extends Component {
         const saved = this.props.savedMeals.length > 0 ? this.props.savedMeals.map((meal, i)=>{
         return <li key={i} className="meal-builder-recipe">
             {meal.recipe.label}
-            <img className="image-result" src={meal.recipe.image} alt={meal.recipe.label}/>
             <button type="button" onClick={() => this.props.deleteMeal(meal)}>Delete</button>
         </li>
         }) : {}
         return(
         <form className="meal-builder">
+            <span className="toggle-modal" onClick={() => this.props.toggleModal()}>x</span>
             <h2>Meal Plan Builder</h2>
             <label htmlFor="meal-name">Name your meal plan:</label>
             <input type="text" name="meal-name" ref={this.input} required></input>

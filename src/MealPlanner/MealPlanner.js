@@ -2,13 +2,16 @@ import React, {Component} from 'react';
 import Search from '../Search/Search';
 import MealBuilder from '../MealBuilder/MealBuilder';
 import SearchResults from '../SearchResults/SearchResults';
+import './MealPlanner.css'
+import shoppingCart from '../img/shopping-cart.png'
 
 class MealPlanner extends Component {
     constructor(props){
         super(props)
         this.state = {
             results: null,
-            savedMeals: []
+            savedMeals: [],
+            displayModal: false
         }
     }
     handleResults = (results) => {
@@ -47,12 +50,29 @@ class MealPlanner extends Component {
             savedMeals: []
         })
     }
+    toggleModal = () =>{
+        this.setState({
+            displayModal: !this.state.displayModal
+        })
+    }
     render(){
+        const saved = this.state.savedMeals.length;
+        let numberSaved;
+        if(saved > 0 ){
+            numberSaved = this.state.savedMeals.length;
+        } 
         return(
             <div>
+                <div className="saved-recipes-notification" onClick={() => this.toggleModal()} >
+                    <p>Saved Recipes</p>
+                    <img src={shoppingCart} alt="shopping cart icon" id="shopping-cart"/>
+                </div>
+                <span className="number-notification">{numberSaved ? numberSaved : ''}</span>
                 <Search handleResults={this.handleResults} />
-                <MealBuilder savedMeals={this.state.savedMeals} deleteMeal={this.deleteMeal} submitMealPlan={this.submitMealPlan}/>
                 <SearchResults results={this.state.results} saveMeal={this.saveMeal}/>
+                <div id="modal" className={this.state.displayModal ? 'modal display': 'modal'}>
+                <MealBuilder savedMeals={this.state.savedMeals} deleteMeal={this.deleteMeal} submitMealPlan={this.submitMealPlan} toggleModal={this.toggleModal}/>
+                </div>
             </div>
         )
     }
