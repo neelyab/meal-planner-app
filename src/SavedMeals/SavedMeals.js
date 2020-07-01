@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import MealPlan from '../MealPlan/MealPlan'
 import MealPlanContext from '../mealPlanContext'
+import './SavedMeals.css'
 
 class SavedMeals extends Component {
     static contextType = MealPlanContext;
@@ -15,7 +16,7 @@ class SavedMeals extends Component {
            savedMeals = ''
         }
         return(
-        <div>{savedMeals}</div>
+        <div className="saved-meal-page">{savedMeals}</div>
         )
     }
 }

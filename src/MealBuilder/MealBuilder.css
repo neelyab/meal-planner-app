@@ -11,8 +11,8 @@
 .meal-builder input, label, button {
     margin-bottom: 10px;
     max-width: 300px;
-    /* margin-left: auto;
-    margin-right: auto; */
+    margin-left: auto;
+    margin-right: auto;
 }
 .meal-builder-recipe {
     max-width: 400px;

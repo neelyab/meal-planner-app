@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import MealCard from '../MealCard/MealCard'
+import {Link} from 'react-router-dom'
+import './MealPlan.css'
 
 class MealPlan extends Component {
     render(){
@@ -13,9 +15,9 @@ class MealPlan extends Component {
             healthLabels={meal.recipe.healthLabels}/>
         })
         return(
-        <div>
+        <div className="meal-plan">
             <h3>{this.props.name}</h3>
-            {meals}
+            <div className="meal-plan-meals">{meals}</div>
 
         </div>
         )

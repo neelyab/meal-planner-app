@@ -12,7 +12,7 @@ class Nav extends Component {
                     <li><Link to='/login'>Log In</Link></li>
                     <li><Link to='/about'>About</Link></li>
                     <li><Link to='/meal-planner'>Meal Planner</Link></li>
-                    <li><Link to='/saved-meals'>Saved Meal Plans</Link></li>
+                    <li><Link to='/saved-meals'>Saved Plans</Link></li>
                 </ul>
             </nav>
         )

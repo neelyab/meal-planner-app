@@ -63,9 +63,10 @@ class MealBuilder extends Component {
                             //show meal saved message
                             savedStatus: true,
                             error: null
+
                         })
                         // set timeout for 2 seconds so that message will disappear
-                        setTimeout(() => this.timeoutFunction(), 2000)
+                        setTimeout(() => this.timeoutFunction(), 1500)
                     }
                 }
                 }

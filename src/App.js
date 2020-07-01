@@ -8,6 +8,7 @@ import SavedMeals from './SavedMeals/SavedMeals';
 import {Route} from 'react-router-dom';
 import Home from './Home/Home.js'
 import MealPlanContext from './mealPlanContext'
+import uuid from 'react-uuid';
 
 class App extends Component {
   constructor(props){
@@ -18,6 +19,7 @@ class App extends Component {
   }
   saveMealPlan = (name, savedMeals) => {
     const mealPlan = {
+      id: uuid(),
       name,
       savedMeals
     }
