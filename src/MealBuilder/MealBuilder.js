@@ -16,16 +16,21 @@ class MealBuilder extends Component {
             // call this function after saved message has been shown
             savedStatus: false
         })
+        // x out of the modal
+        this.props.toggleModal()
     }
     render(){
         // render the meals saved in MealBuilder component
-        const saved = this.props.savedMeals.length > 0 ? this.props.savedMeals.map((meal, i)=>{
-        return <li key={i} className="meal-builder-recipe">
-            {meal.recipe.label}
-            <button type="button" onClick={() => this.props.deleteMeal(meal)}>Delete</button>
-        </li>
+        const saved = this.props.savedMeals.length > 0 ? this.props.savedMeals.map((meal, i) => {
+            return (
+            <li key={i} className="meal-builder-recipe">
+                <img className="image-result" src={meal.recipe.image} alt={meal.recipe.label}/>
+                <p>{meal.recipe.label}</p>
+                <button onClick={() => this.props.deleteMeal(meal)}>Delete</button>
+            </li>
+            )
         }) : {}
-        return(
+        return (
         <form className="meal-builder">
             <span className="toggle-modal" onClick={() => this.props.toggleModal()}>x</span>
             <h2>Meal Plan Builder</h2>

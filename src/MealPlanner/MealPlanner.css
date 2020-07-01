@@ -26,6 +26,16 @@
     align-items: center;
     margin: 0 auto;
 }
+.saved-recipes-notification:hover {
+    cursor: pointer;
+}
 .saved-recipes-notification p {
     max-width: 200px;
+}
+.number-notification {
+    background-color: red;
+    position: relative;
+    width: 15px;
+    color: white;
+    border-radius: 20%;
 }

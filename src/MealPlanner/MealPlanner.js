@@ -66,8 +66,8 @@ class MealPlanner extends Component {
                 <div className="saved-recipes-notification" onClick={() => this.toggleModal()} >
                     <p>Saved Recipes</p>
                     <img src={shoppingCart} alt="shopping cart icon" id="shopping-cart"/>
+                    <span className="number-notification">{numberSaved ? numberSaved : ''}</span>
                 </div>
-                <span className="number-notification">{numberSaved ? numberSaved : ''}</span>
                 <Search handleResults={this.handleResults} />
                 <SearchResults results={this.state.results} saveMeal={this.saveMeal}/>
                 <div id="modal" className={this.state.displayModal ? 'modal display': 'modal'}>

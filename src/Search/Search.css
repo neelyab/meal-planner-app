@@ -22,3 +22,9 @@
   .error-message {
       color: red;
   }
+  select {
+    margin-bottom: 10px;
+  }
+  select:hover, button:hover  {
+    cursor: pointer;
+  }

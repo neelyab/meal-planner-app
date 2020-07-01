@@ -25,7 +25,7 @@ class SearchResults extends Component {
         return(
        <div className="search-results">
             <p>Search Results</p>
-                <ul>
+                <ul className="search-results-list">
                     {this.props.results && this.props.results.length === 0 ? 'No results found' : searchResults}
                 </ul>
             <div className="search-buttons">
