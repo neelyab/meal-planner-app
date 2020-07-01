@@ -38,8 +38,9 @@ class App extends Component {
     <main className='App'>
       <MealPlanContext.Provider value={contextValue}>
       <Route path='/' component={Nav}/>
-      <Route exact path='/' render= {
-        (props) => <SavedMeals {...props}/>}></Route>
+      <Route exact path='/' component={Home}/>
+      {/* <Route exact path='/' render= {
+        (props) => <SavedMeals {...props}/>}></Route> */}
       <Route path='/about' component={About}/>
       <Route path='/login' component={Login}/>
       <Route path='/signup' component={Signup}/>

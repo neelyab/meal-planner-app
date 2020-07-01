@@ -37,12 +37,14 @@ class Search extends Component {
     }
     handleDietOne = (e) => {
         this.setState({
-            dietOne: e.target.value
+            dietOne: e.target.value,
+            error: null
         })
     }
     handleDietTwo = (e) => {
         this.setState({
-            dietTwo: e.target.value
+            dietTwo: e.target.value,
+            error: null
         })
     }
     handleSubmit(e){
@@ -56,6 +58,9 @@ class Search extends Component {
 
         }
         else {
+            this.setState({
+                error: null
+            })
             const search = this.state.searchTerm
             const {dietOne, dietTwo} = this.state
             let finalResult;

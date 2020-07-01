@@ -19,6 +19,7 @@ class SearchResults extends Component {
                     healthLabels={healthLabels} 
                     saveMeal={this.props.saveMeal} 
                     results={this.props.results}
+                    savedMeals={this.props.savedMeals}
                     />
         })
      }

@@ -69,7 +69,7 @@ class MealPlanner extends Component {
                     <span className="number-notification">{numberSaved ? numberSaved : ''}</span>
                 </div>
                 <Search handleResults={this.handleResults} />
-                <SearchResults results={this.state.results} saveMeal={this.saveMeal}/>
+                <SearchResults results={this.state.results} saveMeal={this.saveMeal} savedMeals={this.state.savedMeals}/>
                 <div id="modal" className={this.state.displayModal ? 'modal display': 'modal'}>
                 <MealBuilder savedMeals={this.state.savedMeals} deleteMeal={this.deleteMeal} submitMealPlan={this.submitMealPlan} toggleModal={this.toggleModal}/>
                 </div>

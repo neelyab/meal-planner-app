@@ -15,3 +15,12 @@
 .health-labels {
     font-size: 0.8em;
 }
+
+.save {
+    color: black;
+}
+
+.saved-button {
+    background: darkslategrey;
+    color:white;
+}
