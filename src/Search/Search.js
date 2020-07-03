@@ -68,7 +68,7 @@ class Search extends Component {
             let searchTerms = [];
             searchQueries.forEach(search => {
                 // form search query for diet types
-                if(search == "Vegan" || search == "Vegetarian"){
+                if(search === "Vegan" || search === "Vegetarian"){
                    searchTerms.push(`&healthLabels=${search}`)
                 } else {
                     searchTerms.push(`&dietLabels=${search}`)
@@ -77,7 +77,7 @@ class Search extends Component {
             const searchOne= searchTerms[0]
             const searchTwo=searchTerms[1]
             // fetch results from recipe api
-            fetch(`${config.RECIPE_URL}q=${search}&app_key=${config.RECIPE_API_KEY}&app_id=${config.APP_ID}${searchOne}${searchTwo}`)
+            fetch(`${config.RECIPE_URL}q=${search}&app_key=${config.RECIPE_API_KEY}&app_id=${config.APP_ID}${searchOne}${searchTwo}&from=0&to=100`)
             .then(res => {
                 if(!res.ok){
                     throw new Error()
@@ -86,7 +86,6 @@ class Search extends Component {
                 }
             })
             .then(response => {
-                console.log(response)
                 this.props.handleResults(response.hits, searchQueries)
             })
             .catch(err => {

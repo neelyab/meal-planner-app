@@ -14,24 +14,24 @@ class MealPlanner extends Component {
             displayModal: false
         }
     }
-    handleResults = (results, searchQueries) => {    
-       this.finalResults(results, searchQueries)
-      
-    }
-   finalResults = (searchResults, search)=>{
+    handleResults = (searchResults, search) => {
+        // this function filters the recipe api results further to make sure both diets are included in the results
         let finalResult;
+        //base case return results
         if (!search || search === undefined){
-            console.log(searchResults)
             this.setState({
                 results: searchResults
-            })
+            });
         }
-        else if(search[0] === "Vegan" || search[0] === "Vegetarian"){
-           finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]))
-            this.finalResults(finalResult, search.slice[0])
-        } else {
-            finalResult = searchResults.filter(result => result.recipe.dietLabels.includes(search[0]))
-            this.finalResults(finalResult, search.slice[0])
+        // filter health labels for vegan or vegetarian queries
+        else if (search[0] === "Vegan" || search[0] === "Vegetarian"){
+           finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]));
+            return this.handleResults(finalResult, search.slice[0]);
+        }
+        // filter diet labels for other queries 
+        else {
+            finalResult = searchResults.filter(result => result.recipe.dietLabels.includes(search[0]));
+            return this.handleResults(finalResult, search.slice[0]);
         }
     }
     saveMeal = (meal) => {
@@ -41,14 +41,14 @@ class MealPlanner extends Component {
             return;
         } else {
             // find full recipe in results
-            const fullRecipe = this.state.results.find(result => result.recipe.label === meal)
+            const fullRecipe = this.state.results.find(result => result.recipe.label === meal);
             // make a copy of savedMeals array
-            const savedMeals = this.state.savedMeals
+            const savedMeals = this.state.savedMeals;
             // save recipe to array and set state with new array
             savedMeals.push(fullRecipe);
             this.setState({
                 savedMeals
-            })
+            });
         }
     }
     deleteMeal = (meal) => {
@@ -59,20 +59,20 @@ class MealPlanner extends Component {
         })
     }
     submitMealPlan = (name, mealPlan) => {
-        this.props.saveMealPlan(name, mealPlan)
+        this.props.saveMealPlan(name, mealPlan);
         this.setState({
             savedMeals: []
-        })
+        });
     }
     toggleModal = () =>{
         this.setState({
             displayModal: !this.state.displayModal
-        })
+        });
     }
     render(){
         const saved = this.state.savedMeals.length;
         let numberSaved;
-        if(saved > 0 ){
+        if (saved > 0 ){
             numberSaved = this.state.savedMeals.length;
         } 
         return(
