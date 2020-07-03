@@ -19,6 +19,7 @@ class MealPlanner extends Component {
         this.setState({
             results
         })
+        // console.log(results.hits)
     }
     saveMeal = (meal) => {
         //save individual meal into MealBuilder component

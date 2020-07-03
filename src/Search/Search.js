@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Search.css'
 import Store from '../DummyStore'
+import config from '../config'
 
 class Search extends Component {
     constructor(props){
@@ -61,24 +62,54 @@ class Search extends Component {
             this.setState({
                 error: null
             })
-            const search = this.state.searchTerm
-            const {dietOne, dietTwo} = this.state
-            let finalResult;
-            // initially filter out results for the search term
-            const searchQueryMatch = Store.filter(result => {
-             return result.recipe.label.toLowerCase().includes(search.toLowerCase())
-            }) 
-            // then filter results by diet
-            if(searchQueryMatch) {
-              finalResult = searchQueryMatch.filter(result => {
-                    if (result.recipe.healthLabels.includes(dietOne) || result.recipe.healthLabels.includes(dietTwo) || result.recipe.dietLabels.includes(dietOne) || result.recipe.dietLabels.includes(dietTwo))
-                    {
-                        return result;
-                    }
-                })
-            }
+            const search = this.state.searchTerm;
+            const {dietOne, dietTwo} = this.state;
+            const searchQueries = [dietOne, dietTwo];
+            let searchTerms = [];
+            searchQueries.forEach(search => {
+                // form search query for diet types
+                if(search == "Vegan" || search == "Vegetarian"){
+                   searchTerms.push(`&healthLabels=${search}`)
+                } else {
+                    searchTerms.push(`&dietLabels=${search}`)
+                }
+            })
+            const searchOne= searchTerms[0]
+            const searchTwo=searchTerms[1]
+            // fetch results from recipe api
+            fetch(`${config.RECIPE_URL}q=${search}&app_key=${config.RECIPE_API_KEY}&app_id=${config.APP_ID}${searchOne}${searchTwo}`)
+            .then(res => {
+                if(!res.ok){
+                    throw new Error()
+                } else {
+                    return res.json()
+                }
+            })
+            .then(response => {
+                console.log(response)
+                this.props.handleResults(response.hits)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            
+
+            // let finalResult;
+            // // initially filter out results for the search term
+            // const searchQueryMatch = Store.filter(result => {
+            //  return result.recipe.label.toLowerCase().includes(search.toLowerCase())
+            // }) 
+            // // then filter results by diet
+            // if(searchQueryMatch) {
+            //   finalResult = searchQueryMatch.filter(result => {
+            //         if (result.recipe.healthLabels.includes(dietOne) || result.recipe.healthLabels.includes(dietTwo) || result.recipe.dietLabels.includes(dietOne) || result.recipe.dietLabels.includes(dietTwo))
+            //         {
+            //             return result;
+            //         }
+            //     })
+            // }
             // set the state of results on the meal planner component
-            this.props.handleResults(finalResult)
+            // this.props.handleResults(finalResult)
         }
     }
     render(){
