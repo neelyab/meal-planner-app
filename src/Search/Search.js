@@ -87,7 +87,7 @@ class Search extends Component {
             })
             .then(response => {
                 console.log(response)
-                this.props.handleResults(response.hits)
+                this.props.handleResults(response.hits, searchQueries)
             })
             .catch(err => {
                 console.log(err)

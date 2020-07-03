@@ -14,12 +14,25 @@ class MealPlanner extends Component {
             displayModal: false
         }
     }
-    handleResults = (results) => {
-        // set state of search results
-        this.setState({
-            results
-        })
-        // console.log(results.hits)
+    handleResults = (results, searchQueries) => {    
+       this.finalResults(results, searchQueries)
+      
+    }
+   finalResults = (searchResults, search)=>{
+        let finalResult;
+        if (!search || search === undefined){
+            console.log(searchResults)
+            this.setState({
+                results: searchResults
+            })
+        }
+        else if(search[0] === "Vegan" || search[0] === "Vegetarian"){
+           finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]))
+            this.finalResults(finalResult, search.slice[0])
+        } else {
+            finalResult = searchResults.filter(result => result.recipe.dietLabels.includes(search[0]))
+            this.finalResults(finalResult, search.slice[0])
+        }
     }
     saveMeal = (meal) => {
         //save individual meal into MealBuilder component
