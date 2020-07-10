@@ -1,5 +1,3 @@
-import React, {Component} from 'react';
-import './Signup.css'
 
 import React, {Component} from 'react';
 import './signup.css';
