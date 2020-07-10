@@ -37,9 +37,8 @@ class Login extends Component {
             username.value = ''
             password.value = ''
             // saved authToken and go to home page
-            console.log(res.authToken)
             TokenService.saveAuthToken(res.authToken);
-            this.props.history.push('/meal-planner');
+            this.props.history.push('/');
         })
         .catch(res => {
             this.setState({
