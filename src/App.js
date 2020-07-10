@@ -9,6 +9,7 @@ import {Route} from 'react-router-dom';
 import Home from './Home/Home.js'
 import MealPlanContext from './mealPlanContext'
 import uuid from 'react-uuid';
+import config from './config'
 
 class App extends Component {
   constructor(props){
@@ -31,6 +32,12 @@ class App extends Component {
   deleteMeal = (meal) => {
     console.log('deleting meal')
   }
+  // componentDidMount = () => {
+  //   fetch(`${config.CLIENT_URL}/saved-meal-plans`, {
+  //     method: 'GET',
+  //     headers:''
+  //   })
+  // }
   render() {
     const contextValue = {
             savedMealPlans: this.state.savedMealPlans,
