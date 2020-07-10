@@ -77,7 +77,7 @@ class Search extends Component {
             const searchOne= searchTerms[0]
             const searchTwo=searchTerms[1]
             // fetch results from recipe api
-            fetch(`${config.RECIPE_URL}q=${search}&app_key=${config.RECIPE_API_KEY}&app_id=${config.APP_ID}${searchOne}${searchTwo}&from=0&to=100`)
+            fetch(`${config.RECIPE_URL}q=${search}&app_key=${process.env.REACT_APP_API_KEY}&app_id=${process.env.REACT_APP_ID}${searchOne}${searchTwo}&from=0&to=100`)
             .then(res => {
                 if(!res.ok){
                     throw new Error()
