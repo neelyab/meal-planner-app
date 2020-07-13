@@ -35,12 +35,30 @@ class App extends Component {
   deleteMeal = (meal) => {
     console.log('deleting meal')
   }
-  // componentDidMount = () => {
-  //   fetch(`${config.CLIENT_URL}/saved-meal-plans`, {
-  //     method: 'GET',
-  //     headers:''
-  //   })
-  // }
+  componentDidMount(){
+    const token = TokenService.getAuthToken();
+
+    fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        throw new Error()
+      }
+      return res.json()
+    })
+    .then(response => {
+      console.log(response)
+      // this.setState({
+      //   savedMealPlans: response
+      // })
+    })
+    .catch(err => console.log(err.message))
+  }
   render() {
     const contextValue = {
             savedMealPlans: this.state.savedMealPlans,

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import MealCard from '../MealCard/MealCard'
-import {Link} from 'react-router-dom'
 import './MealPlan.css'
 
 class MealPlan extends Component {
