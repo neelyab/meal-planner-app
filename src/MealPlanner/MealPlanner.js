@@ -24,13 +24,13 @@ class MealPlanner extends Component {
             });
         }
         // filter health labels for vegan or vegetarian queries
-        else if (search[0] === "Vegan" || search[0] === "Vegetarian"){
-           finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]));
-            return this.handleResults(finalResult, search.slice[0]);
-        }
+        // else if (search[0] === "Vegan" || search[0] === "Vegetarian"){
+        //    finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]));
+        //     return this.handleResults(finalResult, search.slice[0]);
+        // }
         // filter diet labels for other queries 
         else {
-            finalResult = searchResults.filter(result => result.recipe.dietLabels.includes(search[0]));
+            finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]) || result.recipe.dietLabels.includes(search[0]));
             return this.handleResults(finalResult, search.slice[0]);
         }
     }
@@ -59,7 +59,22 @@ class MealPlanner extends Component {
         })
     }
     submitMealPlan = (name, mealPlan) => {
-        this.props.saveMealPlan(name, mealPlan);
+        let allMealPlans = []
+        // format the recipes to be submitted
+      mealPlan.forEach(meal => {
+            const healthLabels= meal.recipe.healthLabels.join(', ')
+            const dietLabels = meal.recipe.dietLabels.join(', ')
+            const plan = {
+                dietlabels: dietLabels,
+                healthlabels: healthLabels,
+                label: meal.recipe.label,
+                meal_image: meal.recipe.image,
+                meal_url: meal.recipe.shareAs,
+            }
+            allMealPlans.push(plan)
+        })
+        console.log(allMealPlans)
+        this.props.saveMealPlan(name, allMealPlans);
         this.setState({
             savedMeals: []
         });
@@ -71,6 +86,7 @@ class MealPlanner extends Component {
     }
     render(){
         const saved = this.state.savedMeals.length;
+        console.log(this.state.savedMeals)
         let numberSaved;
         if (saved > 0 ){
             numberSaved = this.state.savedMeals.length;

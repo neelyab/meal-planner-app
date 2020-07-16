@@ -15,6 +15,7 @@ import PrivateRoute from './Utils/PrivateRoute';
 import TokenService from './services/token-service'
 
 class App extends Component {
+  
   constructor(props){
     super(props)
     this.state= {
@@ -23,27 +24,19 @@ class App extends Component {
   }
   saveMealPlan = (name, savedMeals) => {
     const mealPlan = {
-      id: uuid(),
       name,
-      savedMeals
+      meals: savedMeals
     }
-    const { savedMealPlans } = this.state;
-    this.setState({
-      savedMealPlans: [...savedMealPlans, mealPlan]
-    })
-  }
-  deleteMeal = (meal) => {
-    console.log('deleting meal')
-  }
-  componentDidMount(){
-    const token = TokenService.getAuthToken();
 
+    const { savedMealPlans } = this.state;
+    const token = TokenService.getAuthToken();
     fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/`, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
-      }
+      },
+      body: JSON.stringify(mealPlan)
     })
     .then(res => {
       if(!res.ok){
@@ -53,16 +46,68 @@ class App extends Component {
     })
     .then(response => {
       console.log(response)
-      // this.setState({
-      //   savedMealPlans: response
-      // })
+      this.setState({
+        savedMealPlans: [...savedMealPlans, mealPlan]
+      })
     })
     .catch(err => console.log(err.message))
+  }
+  deleteMeal = (meal) => {
+    const { savedMealPlans } = this.state
+    const updatedSavedMealPlans = savedMealPlans.filter(plan => plan.meals[0].mealplan_id !== meal)
+    console.log(updatedSavedMealPlans)
+    const token = TokenService.getAuthToken();
+    fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/${meal}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        throw new Error()
+      }
+      return;
+    })
+    .then(() => {
+      this.setState({
+        savedMealPlans: updatedSavedMealPlans
+      })
+    })
+    .catch(err => console.log(err.message))
+
+  }
+  getMealPlans = () =>{
+    const token = TokenService.getAuthToken();
+    if (token){
+        fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          if(!res.ok){
+            throw new Error()
+          }
+          return res.json()
+        })
+        .then(response => {
+          console.log(response)
+          this.setState({
+            savedMealPlans: response
+          })
+        })
+        .catch(err => console.log(err.message))
+      }
   }
   render() {
     const contextValue = {
             savedMealPlans: this.state.savedMealPlans,
-            deleteMeal: this.deleteMeal
+            deleteMeal: this.deleteMeal,
+            getMealPlans: this.getMealPlans
          }
   return (
     <main className='App'>
@@ -75,8 +120,6 @@ class App extends Component {
       <Route path='/login' component={Login}/>
       <PublicRoute path='/signup' component={Signup}/>
       <PrivateRoute path='/saved-meals' component={SavedMeals}/>
-      {/* <PrivateRoute path='/meal-planner' render= {
-        (props) => <MealPlanner saveMealPlan={this.saveMealPlan} {...props}/> }></PrivateRoute> */}
         <Route path ='/meal-planner'  render={componentProps => (
         TokenService.hasAuthToken()
           ? <MealPlanner  saveMealPlan={this.saveMealPlan} {...componentProps} />
