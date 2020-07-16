@@ -88,7 +88,9 @@ class Search extends Component {
                 this.props.handleResults(response.hits, searchQueries)
             })
             .catch(err => {
-                console.log(err)
+                this.setState( {
+                    error: err.message
+                })
             })
             
 

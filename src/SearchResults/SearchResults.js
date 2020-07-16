@@ -9,7 +9,6 @@ class SearchResults extends Component {
                 page: 0
             }
         }
-
     handleForward = () => {
         this.setState({
             page: this.state.page + 1
@@ -24,9 +23,9 @@ class SearchResults extends Component {
         let searchResults
         // if there are results to display, render Result component
         if (this.props.results) {
+        // paginate results
             const {page} = this.state
-           searchResults = this.props.results.slice(page, (page + numResults));
-           console.log(searchResults.length)
+        searchResults = this.props.results.slice(page, (page + numResults));
         searchResults = searchResults.map((result, i) => {
           const {label, url, image, dietLabels, healthLabels} = result.recipe
           return  <Result 

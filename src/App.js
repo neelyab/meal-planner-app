@@ -8,7 +8,6 @@ import SavedMeals from './SavedMeals/SavedMeals';
 import {Route, Redirect} from 'react-router-dom';
 import Home from './Home/Home.js'
 import MealPlanContext from './mealPlanContext'
-import uuid from 'react-uuid';
 import config from './config';
 import PublicRoute from './Utils/PublicOnlyRoute';
 import PrivateRoute from './Utils/PrivateRoute';
@@ -45,7 +44,6 @@ class App extends Component {
       return res.json()
     })
     .then(response => {
-      console.log(response)
       this.setState({
         savedMealPlans: [...savedMealPlans, mealPlan]
       })
@@ -55,7 +53,6 @@ class App extends Component {
   deleteMeal = (meal) => {
     const { savedMealPlans } = this.state
     const updatedSavedMealPlans = savedMealPlans.filter(plan => plan.meals[0].mealplan_id !== meal)
-    console.log(updatedSavedMealPlans)
     const token = TokenService.getAuthToken();
     fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/${meal}`, {
       method: 'DELETE',
@@ -95,7 +92,6 @@ class App extends Component {
           return res.json()
         })
         .then(response => {
-          console.log(response)
           this.setState({
             savedMealPlans: response
           })

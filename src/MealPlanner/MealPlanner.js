@@ -73,7 +73,6 @@ class MealPlanner extends Component {
             }
             allMealPlans.push(plan)
         })
-        console.log(allMealPlans)
         this.props.saveMealPlan(name, allMealPlans);
         this.setState({
             savedMeals: []
@@ -86,7 +85,6 @@ class MealPlanner extends Component {
     }
     render(){
         const saved = this.state.savedMeals.length;
-        console.log(this.state.savedMeals)
         let numberSaved;
         if (saved > 0 ){
             numberSaved = this.state.savedMeals.length;

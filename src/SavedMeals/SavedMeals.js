@@ -10,12 +10,10 @@ class SavedMeals extends Component {
     }
     render(){
         const mealPlans = this.context.savedMealPlans || [];
-        console.log(mealPlans)
         let savedMeals;
         // only render if there are saved bookmarks
         if (mealPlans.length > 0) {
             savedMeals = mealPlans.map((plan, i) => {
-                console.log(plan)
                 return (
                     <MealPlanContext.Consumer key={i}>
                         {(context) => {

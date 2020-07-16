@@ -5,9 +5,7 @@ import './MealPlan.css'
 class MealPlan extends Component {
     render(){
       const mealplan_id = this.props.savedMeals[0].mealplan_id
-        console.log(this.props.savedMeals)
         const meals=this.props.savedMeals.map((meal, i ) =>{
-            console.log(meal)
             return <MealCard
             key={i}
             id={meal.meal_id} 
