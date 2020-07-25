@@ -1,17 +1,37 @@
 .meal-plan {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     max-width: 400px;
     text-align: center;
-    border: 1px solid black;
+    border: 2px solid #669D31;
+    /* border: 1px solid black; */
+    border-radius: 10px;
     margin: 20px 10px;
     padding: 20px 20px;
+    font-size: 1.5rem;
+    box-shadow: 5px 5px 2px rgb(103, 158, 52, 0.25);
 }
 
 .meal-plan-meals {
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
+    justify-content: flex-start;
+}
+.delete-button {
+    background: #FF5714;
+    border: none;
+    padding: 5px 0;
+    color: #FDFFFC;
+}
+.meal-plan-meals a {
+    color: black;
+    font-size: 0.8rem
+}
+@media only screen and (max-width: 840px){
+    .meal-plan-meals {
+        justify-content: center;
+    }
 }

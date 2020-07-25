@@ -49,8 +49,10 @@ class Login extends Component {
     }
     render(){
         return(
-          <div>
+          <div className="signup-login">
+              <div className="form-container">
                 <form className="login" onSubmit={this.handleSubmit}>
+                    <h2>Log In</h2>
                     <label htmlFor="username">Username:</label>
                         <input type="text" id="username" name="username" required></input>
                     <label htmlFor="password">Password:</label>
@@ -59,6 +61,7 @@ class Login extends Component {
                     <button type="submit">Submit</button>
                     {this.state.loading && <img src={loader} alt="loading icon" className="loader"/>}
                 </form>
+                </div>
             </div>
         )
     }

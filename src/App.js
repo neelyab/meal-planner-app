@@ -19,9 +19,11 @@ class App extends Component {
     super(props)
     this.state= {
       savedMealPlans: [],
+      error: null
     }
   }
   saveMealPlan = (name, savedMeals) => {
+    // format mealplan
     const mealPlan = {
       name,
       meals: savedMeals
@@ -44,14 +46,20 @@ class App extends Component {
       return res.json()
     })
     .then(response => {
+      // add meal plan to saved meal plans
       this.setState({
         savedMealPlans: [...savedMealPlans, mealPlan]
       })
     })
-    .catch(err => console.log(err.message))
+    .catch(err => {
+      this.setState({
+        error: 'Something went wrong, please try again later.'
+      })
+    })
   }
   deleteMeal = (meal) => {
     const { savedMealPlans } = this.state
+    // filter out the mealplan to be deleted
     const updatedSavedMealPlans = savedMealPlans.filter(plan => plan.meals[0].mealplan_id !== meal)
     const token = TokenService.getAuthToken();
     fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/${meal}`, {
@@ -68,14 +76,20 @@ class App extends Component {
       return;
     })
     .then(() => {
+      // set state of saved meal plans with updated meal plans
       this.setState({
         savedMealPlans: updatedSavedMealPlans
       })
     })
-    .catch(err => console.log(err.message))
+    .catch(err => {
+      this.setState({
+        error: 'Something went wrong, please try again later.'
+      })
+    })
 
   }
   getMealPlans = () =>{
+    // get meal plans for user
     const token = TokenService.getAuthToken();
     if (token){
         fetch(`${config.API_ENDPOINT}/api/saved-meal-plans/`, {
@@ -96,10 +110,15 @@ class App extends Component {
             savedMealPlans: response
           })
         })
-        .catch(err => console.log(err.message))
+        .catch(err => {
+          this.setState({
+            error: 'Something went wrong, please try again later.'
+          })
+        })
       }
   }
   render() {
+    // set context with saved meal plans, delete meal function, and get saved meal plans function
     const contextValue = {
             savedMealPlans: this.state.savedMealPlans,
             deleteMeal: this.deleteMeal,
@@ -109,9 +128,8 @@ class App extends Component {
     <main className='App'>
       <MealPlanContext.Provider value={contextValue}>
       <Route path='/' component={Nav}/>
+      <p>{this.state.error && this.state.error}</p>
       <Route exact path='/' component={Home}/>
-      {/* <Route exact path='/' render= {
-        (props) => <SavedMeals {...props}/>}></Route> */}
       <Route path='/about' component={About}/>
       <Route path='/login' component={Login}/>
       <PublicRoute path='/signup' component={Signup}/>

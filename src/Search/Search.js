@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Search.css'
 import config from '../config'
+import loader from '../../src/img/ajax-loader.gif'
 
 class Search extends Component {
     constructor(props){
@@ -12,24 +13,11 @@ class Search extends Component {
             dietOne: null,
             dietTwo: null,
             searchTerm: null,
-            error: null
+            error: null,
+            loading: false
         }
     }
-    handleSugar = () => {
-       this.setState({
-           sugar: !this.state.sugar
-       })
-    }
-    handlePeanut = () => {
-        this.setState({
-            peanut: !this.state.peanut
-        })
-     }
-     handleTreeNut = () => {
-        this.setState({
-            treeNut: !this.state.treeNut
-        })
-     }
+    // controlled form, the following three functions set state according to selection and input
     handleSearch = (value) => {
         this.setState({
             searchTerm: value
@@ -48,7 +36,6 @@ class Search extends Component {
         })
     }
     handleSubmit(e){
-        // this will use the edamam recipe search API
         e.preventDefault();
         // check to make sure that both diets are selected
         if(!this.state.dietOne || !this.state.dietTwo){
@@ -58,8 +45,10 @@ class Search extends Component {
 
         }
         else {
+            // clear any previous errors and display loader
             this.setState({
-                error: null
+                error: null,
+                loading: true
             })
             const search = this.state.searchTerm;
             const {dietOne, dietTwo} = this.state;
@@ -85,35 +74,22 @@ class Search extends Component {
                 }
             })
             .then(response => {
+                this.setState({
+                    loading: false
+                })
                 this.props.handleResults(response.hits, searchQueries)
             })
             .catch(err => {
                 this.setState( {
-                    error: err.message
+                    error: err.message,
+                    loading: false
                 })
             })
-            
-
-            // let finalResult;
-            // // initially filter out results for the search term
-            // const searchQueryMatch = Store.filter(result => {
-            //  return result.recipe.label.toLowerCase().includes(search.toLowerCase())
-            // }) 
-            // // then filter results by diet
-            // if(searchQueryMatch) {
-            //   finalResult = searchQueryMatch.filter(result => {
-            //         if (result.recipe.healthLabels.includes(dietOne) || result.recipe.healthLabels.includes(dietTwo) || result.recipe.dietLabels.includes(dietOne) || result.recipe.dietLabels.includes(dietTwo))
-            //         {
-            //             return result;
-            //         }
-            //     })
-            // }
-            // set the state of results on the meal planner component
-            // this.props.handleResults(finalResult)
         }
     }
     render(){
         return(
+            <>
             <form className="meal-search" onSubmit={(e)=>this.handleSubmit(e)}>
             <section className="search">
                 <h2>Recipe Search</h2>
@@ -140,15 +116,13 @@ class Search extends Component {
                     <option name="vegan" value="Vegan">Vegan</option>
                     <option name="vegetarian" value="Vegetarian">Vegetarian</option>
                 </select>
-                {/* <label htmlFor="sugar-conscious">Sugar Conscious</label>
-                <input type="checkbox" name="sugar" value="sugar-conscious" checked={this.state.sugar} onChange={()=> this.handleSugar()}></input>
-                <label htmlFor="tree-nut-free">Tree Nut Free</label>
-                <input type="checkbox" name="tree-nut-free" value="tree-nut-free" checked={this.state.treeNut} onChange={()=> this.handleTreeNut()}></input>
-                <label htmlFor="peanut-free">Peanut Free</label>
-                <input type="checkbox" name="peanut-free" value="peanut-free" checked={this.state.peanut} onChange={()=> this.handlePeanut()}></input> */}
                 <button type="submit" className="submit" >Submit</button>
                 </section>
               </form>
+              <div className="loader-notification">
+              {this.state.loading && <img src={loader} alt="loading icon" className="loader" />}
+              </div>
+              </>
         )
     }
 }

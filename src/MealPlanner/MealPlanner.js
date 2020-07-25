@@ -23,11 +23,6 @@ class MealPlanner extends Component {
                 results: searchResults
             });
         }
-        // filter health labels for vegan or vegetarian queries
-        // else if (search[0] === "Vegan" || search[0] === "Vegetarian"){
-        //    finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]));
-        //     return this.handleResults(finalResult, search.slice[0]);
-        // }
         // filter diet labels for other queries 
         else {
             finalResult = searchResults.filter(result => result.recipe.healthLabels.includes(search[0]) || result.recipe.dietLabels.includes(search[0]));
@@ -52,6 +47,7 @@ class MealPlanner extends Component {
         }
     }
     deleteMeal = (meal) => {
+        // delete meal from cart
         const saved = this.state.savedMeals
         const newArray = saved.filter(savedMeal => savedMeal.recipe.label !== meal.recipe.label)
         this.setState({
@@ -74,12 +70,14 @@ class MealPlanner extends Component {
             allMealPlans.push(plan)
         })
         this.props.saveMealPlan(name, allMealPlans);
+        // empty savedMeals array once plan is submitted
         this.setState({
             savedMeals: []
         });
     }
     toggleModal = () =>{
         this.setState({
+            // toggles modal to be displayed or hidden
             displayModal: !this.state.displayModal
         });
     }
@@ -87,6 +85,7 @@ class MealPlanner extends Component {
         const saved = this.state.savedMeals.length;
         let numberSaved;
         if (saved > 0 ){
+            // counts number of recipes added to cart to display above cart icon
             numberSaved = this.state.savedMeals.length;
         } 
         return(

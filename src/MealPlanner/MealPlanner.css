@@ -13,6 +13,8 @@
 
 .display {
         display: block;
+        opacity: 1;
+        transition: opacity 0.4s ease;
 }
 #shopping-cart {
     height: 50px;

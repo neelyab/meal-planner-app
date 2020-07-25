@@ -73,8 +73,10 @@ class SignUp extends Component {
     }
     render(){
         return (
-        <div>
+        <div className="signup-login">
+            <div className="form-container">
             <form className="signup" onSubmit={this.handleSubmit}>
+                <h2>Sign Up</h2>
             {this.state.success && <p className="success-message">Account created! Redirecting to login...</p>}
                 {this.state.error && <p className="error-message">{this.state.error}</p>}
                 <label htmlFor="first-name">First Name:</label>
@@ -88,6 +90,7 @@ class SignUp extends Component {
                     <input type="password" id="repeat-password" name="repeat_password" required></input>
                 <button type="submit">Submit</button>
             </form>
+            </div>
         </div>)
     }
 }

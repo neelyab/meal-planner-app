@@ -11,7 +11,7 @@ class SavedMeals extends Component {
     render(){
         const mealPlans = this.context.savedMealPlans || [];
         let savedMeals;
-        // only render if there are saved bookmarks
+        // only render if there are saved mealplans
         if (mealPlans.length > 0) {
             savedMeals = mealPlans.map((plan, i) => {
                 return (

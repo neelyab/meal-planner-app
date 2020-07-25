@@ -19,7 +19,7 @@ class MealPlan extends Component {
         <div className="meal-plan">
             <h3>{this.props.name}</h3>
             <div className="meal-plan-meals">{meals}</div>
-            <button onClick={() => this.props.deleteMeal(mealplan_id)}>Delete</button>
+            <button className="delete-button" onClick={() => this.props.deleteMeal(mealplan_id)}>Delete</button>
         </div>
         )
     

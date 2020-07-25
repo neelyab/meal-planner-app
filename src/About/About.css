@@ -5,9 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 1s;
   }
-  section:nth-child(even) {
-    background: darkgrey;
+ .about:nth-child(even) {
+    background: #669D31;
+  }
+  .about:nth-child(odd){
+    background: #FDFFFC;
   }
   .about {
    display: flex;
@@ -16,10 +20,12 @@
     align-items: center; 
     min-height: 300px;
     padding: 30px 30px;
+    padding-top: 100px;
     margin: 0 auto;
   }
   .about p {
     text-align: center;
+    max-width: 500px;
   }
   
   section p {
@@ -28,4 +34,11 @@
   .image p {
     color: white;
     text-align: center;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .image {
+      height: 250px;
+      width: 350px;
+    }
   }

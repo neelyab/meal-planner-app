@@ -2,3 +2,41 @@
     max-width: 300px;
     margin: 0 auto;
 }
+
+.loader {
+    height: 25px;
+    width: 25px;
+    margin: 0 auto;
+}
+
+.signup-login {
+    height: 100vh;
+    background: url(../img/food.jpg);
+    background-size: cover;
+    background-position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login, .signup {
+    height: 200px;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px 20px;
+}
+.login p, .signup p {
+    font-size: 1.2rem;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    max-height: 600px;
+    background: rgb(255, 255, 255);
+    margin: 0 auto;
+    width: 90%;
+    padding: 20px 20px;
+}

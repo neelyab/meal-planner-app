@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import Result from '../Result/Result'
 import './SearchResults.css';
-let numResults = 5;
+
+
+
+let numResults = 4;
 class SearchResults extends Component {
     constructor(props){
         super(props)
+        this.myRef = React.createRef()
             this.state = {
                 page: 0
             }
@@ -13,19 +17,30 @@ class SearchResults extends Component {
         this.setState({
             page: this.state.page + 1
         })
+        // scroll to top of div
+        this.scrollToMyRef()
     } 
     handleBack = () => {
         this.setState({
             page: this.state.page - 1
         })
+        this.scrollToMyRef()
+    }
+    scrollToMyRef = () => { 
+        // once search results are displayed, auto scroll to the top of the results
+        window.scrollTo(0, this.myRef.current.offsetTop);  
     }
     render(){
         let searchResults
+        let totalNumPages;
+        if (this.props.results) {
+           totalNumPages = this.props.results.length / numResults;
+        }
         // if there are results to display, render Result component
         if (this.props.results) {
         // paginate results
             const {page} = this.state
-        searchResults = this.props.results.slice(page, (page + numResults));
+        searchResults = this.props.results.slice((page * numResults), ((page * numResults) + numResults));
         searchResults = searchResults.map((result, i) => {
           const {label, url, image, dietLabels, healthLabels} = result.recipe
           return  <Result 
@@ -43,16 +58,15 @@ class SearchResults extends Component {
         })
      }
         return(
-       <div className="search-results"> 
-            <p>Search Results</p>
+       <div className="search-results" ref={this.myRef}> 
                 <ul className="search-results-list">
-                    {this.props.results && this.props.results.length === 0 ? 'No results found' : 
+                    {this.props.results && this.props.results.length === 0 ? <p className="no-results">No results found</p> : 
                     searchResults}
                 </ul>
                 {this.props.results && 
             (<div className="search-buttons">
-                {this.state.page > 0 ? <button type="button" id="search-results" onClick={() => this.handleBack()}>back</button> : ''}
-                {this.state.page < (this.props.results.length / numResults) ? <button type="button" id="search-results" onClick={() => this.handleForward()}>next</button> : '' }
+                {this.state.page > 0 ? <button type="button" id="search-results" onClick={() => this.handleBack()}>back</button> : <button className="hidden"></button>}
+                {totalNumPages && (totalNumPages > this.state.page + 1) ? <button type="button" id="search-results" onClick={() => this.handleForward()}>next</button> :  <button className="hidden"></button> }
             </div>)
         }
       </div> 
