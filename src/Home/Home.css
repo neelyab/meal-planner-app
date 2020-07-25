@@ -8,6 +8,7 @@
     background: url(../img/food.jpg);
     background-size: cover;
     background-position: fixed;
+    margin-top: 0;
 }
 
 .meal-planner-app {
@@ -26,7 +27,7 @@
     padding: 5px 5px;
 }
 
-.welcome-page button:hover {
+/* .welcome-page button:hover {
     opacity: 80%;
     background-color: #669D31;
-}
+} */

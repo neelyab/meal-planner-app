@@ -22,7 +22,7 @@ class App extends Component {
       error: null
     }
   }
-  componentDidUpdate = () => {
+  componentDidMount = () => {
     this.setState({
       error: null
     })
@@ -94,6 +94,9 @@ class App extends Component {
 
   }
   getMealPlans = () =>{
+    this.setState({
+      error: null
+    })
     // get meal plans for user
     const token = TokenService.getAuthToken();
     if (token){
