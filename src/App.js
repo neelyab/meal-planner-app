@@ -22,6 +22,11 @@ class App extends Component {
       error: null
     }
   }
+  componentDidUpdate = () => {
+    this.setState({
+      error: null
+    })
+  }
   saveMealPlan = (name, savedMeals) => {
     // format mealplan
     const mealPlan = {

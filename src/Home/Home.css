@@ -28,4 +28,5 @@
 
 .welcome-page button:hover {
     opacity: 80%;
+    background-color: #669D31;
 }

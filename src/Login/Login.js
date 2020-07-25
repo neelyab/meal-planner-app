@@ -13,6 +13,7 @@ class Login extends Component {
         e.preventDefault();
         this.setState({
             // show loading icon until response
+            error: null,
             loading: true
         });
         const { username, password } = e.target;
