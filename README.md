@@ -62,9 +62,8 @@ Each request must include  `content-type: application/json` and `Authorization: 
 * /api/saved-meal-plans to save a new meal plan
 * must be formatted as an object with 'name' as a string and 'meals' as an array of objects. Each meal must include `meal_image` `meal_url`, and `meal_label` 
 * OPTIONAL in each meal are: `dietlabels`, `healthlabels`
-* EXAMPLE: ```javascript 
-const meal = {
-    name: 'meal plan',
+* EXAMPLE: ```const meal = { ```
+    ```name: 'meal plan',```
     meals: [{
         meal_image: 'www.image.com',
         meal_url: 'www.url.com',
