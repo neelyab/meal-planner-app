@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Meal Planner App
 
-## Available Scripts
+## About
+The meal planner app is a full stack application that helps two people find recipes that suit two different diets and plan their meals. Upon creating an account, the user is able to search for recipes and save these recipes to their own customized meal plans. The app uses Edamam's recipe API for the recipes and an API built from scratch for user info and saved recipes.
 
-In the project directory, you can run:
+## Live Link
+https://meal-planner-app-eight.vercel.app/
 
-### `npm start`
+## Technologies Used
+* HTML
+* CSS
+* Javascript
+* React 
+* Node.js
+* Express
+* PostgreSQL
+* RESTful API
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![ home screen](./src/img/meal-planner-home.jpg)
 
-### `npm test`
+![ search results screen](./src/img/meal-planner-search.jpg)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![ save a meal plan screen](./src/meal-planner-save.jpg)
 
-### `npm run build`
+![ saved meal plans screen](./src/meal-planner-saved-meals.jpg)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# API Documentation 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Base URL
+https://boiling-dawn-47143.herokuapp.com"
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Response
+* JSON
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Authentication
+* Requires JWT token
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Each request must include  `content-type: application/json` and `Authorization: Bearer [token]`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Create New User
+* POST /api/users
+* Request Body must include: username, first_name, user_password 
 
-## Learn More
+## Log In
+* POST /api/auth/login
+* Request Body must include username, user_password
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Saved Meals
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### GET saved meals
+* /api/saved-meal-plans to get user's saved meals
+* /api/saved-meal-plans/:id to get a mealplan by id
 
-### Code Splitting
+### DELETE user's saved project
+* /api/saved-meal-plans/:id to delete a specific meal plan
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### POST save a project to user
+* /api/saved-meal-plans to save a new meal plan
+* must be formatted as an object with 'name' as a string and 'meals' as an array of objects. Each meal must include `meal_image` `meal_url`, and `meal_label` 
+* OPTIONAL in each meal are: `dietlabels`, `healthlabels`
