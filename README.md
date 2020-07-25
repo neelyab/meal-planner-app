@@ -22,7 +22,7 @@ https://meal-planner-app-eight.vercel.app/
 
 ![ search results screen](./src/img/meal-planner-search.jpg)
 
-![ save a meal plan screen](./src/meal-planner-save.jpg)
+![ save a meal plan screen](./src/meal-planner-save.JPG)
 
 ![ saved meal plans screen](./src/meal-planner-saved-meals.jpg)
 
