@@ -31,9 +31,6 @@ class Home extends Component {
                 : res.json()
         )
         .then(res => {
-            // username.value = ''
-            // password.value = ''
-            // saved authToken and go to home page
             TokenService.saveAuthToken(res.authToken);
             this.props.history.push('/meal-planner')
         })
