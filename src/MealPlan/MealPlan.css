@@ -6,7 +6,6 @@
     max-width: 400px;
     text-align: center;
     border: 2px solid #669D31;
-    /* border: 1px solid black; */
     border-radius: 10px;
     margin: 20px 10px;
     padding: 20px 20px;
@@ -18,7 +17,7 @@
     display: flex;
     flex-flow: row wrap;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
 }
 .delete-button {
     background: #FF5714;
@@ -30,8 +29,8 @@
     color: black;
     font-size: 0.8rem
 }
-@media only screen and (max-width: 840px){
+@media only screen and (min-width: 840px){
     .meal-plan-meals {
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
